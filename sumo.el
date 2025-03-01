@@ -17,8 +17,10 @@
     (grayscale14 . (:dark "#DFDFDF" :light "#2F2F2F"))
     (grayscale15 . (:dark "#EFEFEF" :light "#1F1F1F"))
     (grayscale16 . (:dark "#FFFFFF" :light "#0F0F0F"))
-    (sumo-purple . (:dark "#BF00FF" :light "#6600AA"))
-    (sumo-orange . (:dark "#FF6500" :light "#FF4500")))
+    (sumo-purple . (:dark "#FF00FF" :light "#6600AA"))
+    (sumo-orange . (:dark "#FF6500" :light "#FF4500"))
+    (green . (:dark "#00FF66" :light "#006600"))
+    (red . (:dark "#FF0000" :light "#FF0000")))
     "Standard color palette for the theme. In the light version, the grayscale will be inverted.")
 
 (cl-defmacro sumo/traverse-alist (alist a b &body body)
@@ -65,7 +67,9 @@
        ;; g16 is dark colored for :light
        ;; g16 is light colored for :dark
        (orange (gethash 'sumo-orange table))
-       (purple (gethash 'sumo-purple table)))
+       (purple (gethash 'sumo-purple table))
+       (red (gethash 'red table))
+       (green (gethash 'green table)))
   (custom-theme-set-faces
    theme
    ;; Standard
@@ -90,19 +94,20 @@
    `(isearch ((t (:foreground ,g2 :background ,orange))))
    `(lazy-highlight ((t (:background ,g4))))
    `(error ((t (:foreground ,orange :bold t))))
+   `(variable-pitch ((t (:height 1.1))))
    ;; Font lock
    `(font-lock-builtin-face ((t (:foreground ,g13 :italic t))))
-   `(font-lock-comment-face ((t (:foreground ,g7 :italic t))))
+   `(font-lock-comment-face ((t (:foreground ,g7 :italic t :weight light))))
    `(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
    `(font-lock-constant-face ((t (:inherit default :bold t))))
-   `(font-lock-doc-face ((t (:inherit comment))))
+   `(font-lock-doc-face ((t (:inherit comment :weight light))))
    `(font-lock-doc-markup-face ((t (:inherit font-lock-doc-face :bold t))))
    `(font-lock-function-name-face ((t (:foreground ,orange :bold t))))
    `(font-lock-function-call-face ((t (:foreground ,orange))))
-   `(font-lock-keyword-face ((t (:foreground ,purple :italic t))))
+   `(font-lock-keyword-face ((t (:foreground ,purple))))
    `(font-lock-preprocessor-face ((t (:foreground ,g13))))
-   `(font-lock-regexp-face ((t (:foreground ,g12 :bold nil :italic nil))))
-   `(font-lock-string-face ((t (:foreground ,g9))))
+   `(font-lock-regexp-face ((t (:foreground ,g12))))
+   `(font-lock-string-face ((t (:foreground ,g9 :weight light))))
    `(font-lock-type-face ((t (:foreground ,orange :italic t))))
    `(font-lock-variable-name-face ((t (:foreground ,purple :bold t))))
    `(font-lock-variable-use-face ((t (:foreground ,g12))))
@@ -110,6 +115,23 @@
    `(minibuffer-prompt ((t (:foreground ,purple :bold t))))
    ;; Org
    `(org-hide ((t (:background ,g2 :foreground ,g2))))
+   `(outline-1 ((t (:foreground ,orange :height 1.5 :bold t))))
+   `(outline-2 ((t (:foreground ,purple :height 1.4 :bold t))))
+   `(outline-3 ((t (:foreground ,g16 :height 1.3 :bold t))))
+   `(outline-4 ((t (:foreground ,g16 :height 1.2 :bold t))))
+   `(outline-5 ((t (:foreground ,g16 :height 1.1 :bold t))))
+   `(outline-6 ((t (:foreground ,g16 :height 1.1 :bold t))))
+   `(outline-7 ((t (:foreground ,g16 :height 1.1 :bold t))))
+   `(outline-8 ((t (:foreground ,g16 :height 1.1 :bold t))))
+   `(org-document-title ((t (:foreground ,purple :height 1.5 :bold t))))
+   `(org-done ((t (:foreground ,green))))
+   `(org-todo ((t (:foreground ,red))))
+   `(org-tag ((t (:foreground ,purple :height 0.7 :italic t :bold nil))))
+   `(org-headline-done ((t (:foreground ,g7))))
+   ;; Eshell
+   `(eshell-prompt ((t (:inherit nil :foreground ,purple))))
+   ;; Sly
+   `(sly-mrepl-output-face ((t (:foreground ,orange))))
    ))))
 
 ;; sumo-light.el and sumo-dark.el should now show up when themes are loaded
