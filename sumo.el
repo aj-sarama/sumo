@@ -128,6 +128,7 @@
    `(org-todo ((t (:foreground ,red))))
    `(org-tag ((t (:foreground ,purple :height 0.7 :italic t :bold nil))))
    `(org-headline-done ((t (:foreground ,g7))))
+   `(org-scheduled-today ((t (:foreground ,g16))))
    ;; Eshell
    `(eshell-prompt ((t (:inherit nil :foreground ,purple))))
    ;; Sly
